@@ -213,7 +213,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_03_055202) do
     t.string "internal_id", default: ""
     t.string "status", default: ""
     t.string "hierarchy", default: ""
-    t.index ["publication_number"], name: "documents_publication_number_idx"
   end
 
   create_table "email_subscriptions", force: :cascade do |t|

@@ -107,11 +107,13 @@ class Api::V1::DocumentsController < ApplicationController
     if query != '*'
       documents = Document.search(
         query,
-        fields: ['name^10', 'issue_id^5', 'short_description^2', 'description'],
+        fields: ['issue_id^9'],
         where: searchkick_where,
-        misspellings: {edit_distance: 2, below: 5},
+        misspellings: { edit_distance: 2, below: 5 },
         limit: limit,
-        offset: params['offset'].to_i)
+        offset: params['offset'].to_i,
+        order: { publication_date: :desc }
+      )
     else
       documents = Document.search(
         query,
@@ -119,7 +121,8 @@ class Api::V1::DocumentsController < ApplicationController
         where: searchkick_where,
         limit: limit,
         offset: params['offset'].to_i,
-        order: {publication_date: :desc})
+        order: { publication_date: :desc }
+      )
     end
 
     total_count = documents.total_count

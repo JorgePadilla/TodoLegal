@@ -16,7 +16,7 @@ default: &default
 
 development:
   <<: *default
-  database: default
+  database: todolegaldb_development
   pool: 5
 
 
